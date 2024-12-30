@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year, My Love ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #ffdde1);
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #e91e63;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            margin: 10px;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background-color: #d81b60;
+        }
+
+        .falling-hearts {
+            position: fixed;
+            font-size: 2em;
+            color: #ff80ab;
+            pointer-events: none;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .full-screen-image {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .full-screen-image img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 20px;
+        }
+
+        .full-screen-image .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            font-size: 3em;
+            color: white;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>สุขสันต์วันปีใหม่ที่รัก!</h1>
+        <p>ขอบคุณที่อยู่ข้างกันเสมอ <span>❤️</span></p>
+        <button onclick="showLove('heart')">กดเพื่อรับความรัก</button>
+        <button onclick="showLove('next')">กดเพื่อไปต่อ</button>
+        <button onclick="showLove('angpao')">กดเพื่อรับอั่งเปา</button>
+    </div>
+
+    <div class="full-screen-image" id="imageModal">
+        <span class="close-btn" onclick="closeImage()">&times;</span>
+        <img id="modalImage" src="https://media0.giphy.com/media/StKiS6x698JAl9d6cx/giphy.gif" alt="รักนะจุ๊บๆ">
+    </div>
+
+    <script>
+        // เมื่อกดปุ่ม เลือกภาพที่ต้องการแสดง
+        function showLove(type) {
+            fallingHearts();
+            if (type === 'heart') {
+                document.getElementById('modalImage').src = 'imgs/อวยพร.png'; 
+            } else if (type === 'angpao') {
+                document.getElementById('modalImage').src = 'imgs/A.jpg'; // รูปอั่งเปา
+            } else {
+                document.getElementById('modalImage').src = 'https://i.pinimg.com/originals/93/69/2b/93692bdd824eba4aabcee9d9b16e84f2.jpg'; 
+            }
+            showImage();
+        }
+
+        function fallingHearts() {
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('falling-hearts');
+                heart.innerText = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+        }
+
+        function showImage() {
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+
+        function closeImage() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
